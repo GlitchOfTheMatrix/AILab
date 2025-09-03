@@ -2,17 +2,6 @@ import random
 import time
 
 def parse_dimacs(filename):
-    """
-    Parses a DIMACS CNF file to extract variables and clauses.
-
-    Args:
-        filename (str): The path to the DIMACS file.
-
-    Returns:
-        tuple: A tuple containing:
-            - num_vars (int): The number of variables.
-            - clauses (list): A list of lists, where each inner list represents a clause.
-    """
     clauses = []
     num_vars = 0
     try:
@@ -34,17 +23,6 @@ def parse_dimacs(filename):
     return num_vars, clauses
 
 def evaluate(solution, clauses):
-    """
-    Calculates the number of unsatisfied clauses for a given solution.
-    The goal is to minimize this value to 0.
-
-    Args:
-        solution (list): A list of booleans representing the variable assignments.
-        clauses (list): The list of clauses.
-
-    Returns:
-        int: The number of unsatisfied clauses.
-    """
     unsatisfied_count = 0
     for clause in clauses:
         is_satisfied = False
@@ -59,20 +37,6 @@ def evaluate(solution, clauses):
     return unsatisfied_count
 
 def stochastic_hill_climbing(num_vars, clauses, max_restarts=50, max_steps=1000):
-    """
-    Solves the 3-SAT problem using the Stochastic Hill Climbing algorithm with random restarts.
-
-    Args:
-        num_vars (int): The number of variables.
-        clauses (list): The list of clauses.
-        max_restarts (int): The number of times to start over from a random solution.
-        max_steps (int): The maximum number of steps to take in each attempt before restarting.
-
-    Returns:
-        tuple: A tuple containing:
-            - best_solution (list): The best solution found across all restarts.
-            - best_fitness (int): The fitness of the best solution.
-    """
     start_time = time.time()
     best_solution_so_far = []
     best_fitness_so_far = float('inf')
